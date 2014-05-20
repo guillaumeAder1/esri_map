@@ -12,7 +12,7 @@ Creation of an interactive Map, using Google Maps API v3 and fictive JSON data.
 
 
 
-* HOW TO USE *
+** HOW TO USE **
 
 To use use this application, just download it from the github account,
 then extract .zip file if necessary.
@@ -21,4 +21,9 @@ To launch the program, just click on 'index.html' file situated at the root of t
 application also available here : 
 http://guillaumeader-web.com/projet_local/esri_interactiveMap/index.html
 
+
+* All those Data are totally ficitve, they are generated with a Json Generator *
+
+Json Generator url : 
+http://www.json-generator.com/
 
