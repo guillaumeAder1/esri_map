@@ -22,7 +22,12 @@ application also available here :
 http://guillaumeader-web.com/projet_local/esri_interactiveMap/index.html
 
 
-* All those Data are totally ficitve, they are generated with a Json Generator *
+
+* Objective * 
+ The goal of this application is to create a geolocated address book 
+
+
+* All those Data are totally ficitve, and were generated with a Json Generator *
 
 Json Generator url : 
 http://www.json-generator.com/
