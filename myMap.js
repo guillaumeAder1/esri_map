@@ -19,6 +19,8 @@ var interactiveMap = function( _divContainer , _fileJson){
             new google.maps.Point(0,0)
   );    
   var infoWindow = new google.maps.InfoWindow; 
+  var containerInfoDom = $('div.displayData');
+
   this.initialize = function() {    
 
     getMydataJson();
@@ -28,7 +30,7 @@ var interactiveMap = function( _divContainer , _fileJson){
   var getMydataJson = function( callback){
 
     // Load external Json file ( dataProvider)
-    $.getJSON( "myData/fictive_data_set.json" , callback)
+    $.getJSON( jsonDataUrl, callback)
     .done(function( jsonData ) {
           // if success : place marker on the
           placeMarkerData( jsonData)     
@@ -51,26 +53,38 @@ var interactiveMap = function( _divContainer , _fileJson){
         position: new google.maps.LatLng(dataGeo[i].coordinate[0] , dataGeo[i].coordinate[1]),
         title: dataGeo[i].name,
         icon: image,
-        name:"<h2 class='popupTitle' style='width:200px; height:20px;'  > " + dataGeo[i].name + " </h2>" +
+        name: "<h2 class='popupTitle' style='width:500px; height:20px;'  > " + dataGeo[i].name + " </h2>" +
               "<img class='imgLogo' src = '" + dataGeo[i].picture + "' />"+
               "<h3> from: " + dataGeo[i].company + " | age: " + dataGeo[i].age + "</h3>" +
               "<h4> " + dataGeo[i].email + "</h4>" + 
-              "<p> " + dataGeo[i].phone + "</p>" + 
+              "<button class='seeDetail'> See all profile </button> ",
+        content:"<p> " + dataGeo[i].phone + "</p>" + 
               "<p> " + dataGeo[i].address + "</p>" +
-              "<div class='textPopup' > " + dataGeo[i].about + "</div>"  
+              "<div class='textPopup' > " + dataGeo[i].about + "</div>" 
       });
         markers.push(myMarker);
-        createInfoBull (map , infoWindow , myMarker.name , myMarker);
+        createInfoBull (map , infoWindow , myMarker.name , myMarker , myMarker.content);
     }
   }
+  function displayAllProfile(currentProfil){
+    console.log(currentProfil)
+    $('div.displayData').text(currentProfil);
+  }
 
-
-  function createInfoBull(map , infoWindow, contentString, marker){
+  function createInfoBull(map , infoWindow, contentString, marker , content){
     // create event 'click' n each infoWindow
     google.maps.event.addListener(marker , 'click' , function(){
       infoWindow.setContent(contentString);
       infoWindow.open(map , marker);
+
+      $("button.seeDetail").on('click' , function(){
+        containerInfoDom.empty();
+        containerInfoDom.append(contentString).append(content);
+        containerInfoDom.find("img.imgLogo").remove();
+        containerInfoDom.find("button.seeDetail").remove();
+      })
     })
+
   }
   // Open info Window
     var onMarkerClick = function() {
