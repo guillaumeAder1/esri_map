@@ -23,6 +23,9 @@ http://guillaumeader-web.com/projet_local/esri_interactiveMap/index.html
 
 
 
+** INFORMATIONS **
+
+
 * Objective * 
  The goal of this application is to create a geolocated address book 
 
